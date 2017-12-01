@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to the Archilogic office</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+    <script src="https://dist.3d.io/3dio-js/1.x.x/3dio.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <img id="intro" crossorigin="anonymous" src="https://cdn.glitch.com/7e2679a3-cfbe-4c53-8578-ad611a52d97e%2Fintro.png?1511390264628" />
+        <img id="hide" crossorigin="anonymous" src="https://cdn.glitch.com/7e2679a3-cfbe-4c53-8578-ad611a52d97e%2Fhide.png?1511390960084" />
+
+        <img id="d1" crossorigin="anonymous" src="1.png" />
+        <img id="d2" crossorigin="anonymous" src="2.png" />
+        <img id="d3" crossorigin="anonymous" src="3.png" />
+
+        <img id="r2" crossorigin="anonymous" src="4-6.png" />
+        <img id="r3" crossorigin="anonymous" src="7-9.png" />
+        <img id="r4" crossorigin="anonymous" src="10-12.png" />
+        <img id="r5" crossorigin="anonymous" src="13-15.png" />
+        <img id="r6" crossorigin="anonymous" src="16-18.png" />
+        <img id="r7" crossorigin="anonymous" src="19-21.png" />
+        <img id="r8" crossorigin="anonymous" src="22-24.png" />
+
+        <img id="production" crossorigin="anonymous" src="https://cdn.glitch.com/7e2679a3-cfbe-4c53-8578-ad611a52d97e%2Fproduction.png?1511393906821" />
+
+        <video id="day1" src="al-intro.mp4" autplay loop />
+      </a-assets>
+
+      <a-sky color="skyblue"></a-sky>
+      <!-- camera & cursor -->
+      <a-entity id="head" camera="userHeight: 1.6" position="0 0 0" look-controls wasd-controls>
+        <a-cylinder radius="0.1" id="teleporter" material="color:black; flatShading: true; side: back; opacity: 0" scale="0 0 0">
+          <a-animation begin="teleport" attribute="material.opacity" from="0" to="1" dur="500"></a-animation>
+          <a-animation id="teleporterFadeOut" begin="teleport" attribute="material.opacity" from="1" to="0" dur="500" delay="800"></a-animation>
+        </a-cylinder>
+
+        <a-entity cursor="fuse: true; fuseTimeout: 1500" position="0 0 -0.2" geometry="primitive: ring; radiusInner: 0.005; radiusOuter: 0.01" material="color: #00ff00; shader: flat">
+          <a-animation begin="click" easing="ease-out" attribute="scale" dur="150"
+                       fill="forwards" from="0.1 0.1 0.1" to="1 1 1"></a-animation>
+          <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" dur="1500"
+                       fill="backwards" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+        </a-entity>
+      </a-entity>
+
+      <!-- info panels -->
+      <a-entity id="introPanel" position="0 1.6 -0.5">
+        <a-image width="0.5" height="0.5" src="#intro"></a-image>
+        <a-image id="hideInfo" width="0.1" height="0.05" position="0 -0.21 0.001" src="#hide" event-set__hide="_event: click; _target: #introPanel; scale: 0 0 0; visible: false"></a-image>
+      </a-entity>
+
+      <a-entity id="productionPanel" position="-0.752 1.6 -5.815">
+        <a-image width="0.5" height="0.5" src="#production"></a-image>
+        <a-image width="0.1" height="0.05" position="0 -0.21 0.001" src="#hide" event-set__hide="_event: click; _target: #productionPanel; scale:0 0 0; visible: false"></a-image>
+      </a-entity>
+
+      <!-- doors -->
+      <a-image id="door1" src="#d1" width="0.6" height="0.35" position="-1.578 1.055 -7.709" rotation="-14.896902673401405 0 0" event-set__hide="_event: click; scale: 0 0 0"></a-image>
+      <a-image id="door2" src="#d2" width="0.6" height="0.35" position="-3.4 1.07 -7.735" rotation="-14.897 0 0"></a-image>
+      <a-image id="door3" src="#d3" width="1" height="0.6" position="-4.817 1.1 -7.65" rotation="0 -15.29797312999298 0"></a-image>
+
+      <a-image id="room2" src="#r2" width="0.4" height="0.6" position="0.35 1.5 -5.917"></a-image>
+      <a-image id="room3" src="#r3" width="0.4" height="0.6" position="-1.262 1.5 -3.623" rotation="0 90 0"></a-image>
+      <a-image id="room4" src="#r4" width="0.4" height="0.6" position="1.058 1.5 -3.470" rotation="0 -90 0"></a-image>
+      <a-image id="room5" src="#r5" width="0.4" height="0.6" position="1.23 1.5 -0.458" rotation="0 90 0"></a-image>
+      <a-image id="room6" src="#r6" width="0.4" height="0.6" position="-2.723 1.5 -0.458" rotation="0 90 0"></a-image>
+      <a-image id="room7" src="#r7" width="0.4" height="0.6" position="-2.723 1.5 0.857" rotation="0 90 0"></a-image>
+      <a-image id="room8" src="#r8" width="0.4" height="0.6" position="-2 1.5 1.457" rotation="0 -180 0"></a-image>
+
+      <!-- content -->
+      <a-video id="player1" width="0.2" height="0.15" src="#day1" position="-1.578 1.055 -7.711" rotation="-14.896902673401405 0 0" geometry="width:0.58;height:0.35"></a-video>
+
+      <!-- invisible click target for teleportation -->
+      <a-plane id="ground" rotation="-90 0 0" width="100" height="100" color="red" position="0 0.1 0" visible="false"></a-plane>
+
+    </a-scene>
+    <script src="script.js" defer></script>
+  </body>
+</html>
