@@ -35,3 +35,26 @@ document.getElementById('teleporterFadeOut').addEventListener('animationend', fu
 document.getElementById('player1').addEventListener('click', function () {
   document.getElementById('day1').play()
 })
+
+var loadingMsgs = [
+  'Decorating the Christmas tree...',
+  'Singing Christmas songs...',
+  'Lighting the fireplace...',
+  'Baking cookies...'
+], current = 0, loader = document.getElementById('loader')
+
+function changeLoadingText() {
+  loader.textContent = loadingMsgs[current]
+  current = (current + 1) % loadingMsgs.length
+  console.log('loader', current)
+}
+
+var loaderInterval = setInterval(changeLoadingText, 1500)
+
+scene.addEventListener('model-loaded', function onLoaded(evt) {
+  if(!evt.target.hasAttribute('io3d-data3d')) return
+
+  document.body.removeChild(document.querySelector('section'))
+  clearInterval(changeLoadingText)
+  this.removeEventListener('model-loaded', onLoaded)
+})

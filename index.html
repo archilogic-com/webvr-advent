@@ -5,11 +5,42 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Courgette|Rouge+Script" rel="stylesheet">
+
     <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
     <script src="https://dist.3d.io/3dio-js/1.x.x/3dio.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+    <style>
+      body {
+        font-family: Courgette, sans-serif;
+      }
+
+      h1 {
+        font-family: 'Rogue Script', cursive;
+        font-size: 3rem;
+      }
+
+      section {
+        position: absolute;
+        text-align: center;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: white;
+        z-index: 10000;
+        padding-top: 10%;
+      }
+    </style>
   </head>
   <body>
+    <section>
+      <img src="https://spaces-static.archilogic.com/build/171129-163052-fed56ab/admin/img/archilogic-logo-black.svg" width="200" height="200" alt="">
+      <h1>Seasons greetings from Archilogic</h1>
+      <h2>Join us on a tour through our office</h2>
+      <div id="loader">Loading...</div>
+    </section>
     <a-scene>
       <a-assets>
         <img id="intro" crossorigin="anonymous" src="https://cdn.glitch.com/7e2679a3-cfbe-4c53-8578-ad611a52d97e%2Fintro.png?1511390264628" />
